@@ -10,6 +10,29 @@
 
 <body>
     Test
+    <button id="notifications">Request notification</button>
+    <script>
+        function randomNotification() {
+            // const randomItem = Math.floor(Math.random() * games.length);
+            const notifTitle = 'Super notification test'
+            const notifBody = `Super notification body`;
+            const notifImg = `data/icon-128.png`;
+            const options = {
+                body: notifBody,
+                icon: notifImg,
+            };
+            new Notification(notifTitle, options);
+        }
+
+        const button = document.getElementById('notifications');
+        button.addEventListener('click', () => {
+            Notification.requestPermission().then((result) => {
+                if (result === 'granted') {
+                    randomNotification();
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>
